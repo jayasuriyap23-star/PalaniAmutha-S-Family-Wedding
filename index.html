@@ -96,42 +96,24 @@ h1,h2,h3{font-family:var(--display);font-weight:600;color:var(--maroon);}
 .corner-frame::after{bottom:-10px;right:-10px;border-left:none;border-top:none;}
 
 /* ==========================================================================
+
    PETALS / AMBIENT PARTICLES (continuous, canvas-based)
+
    ========================================================================== */
-#<canvas id="flowerCanvas" width="500" height="500"></canvas>
-<script>
-const canvas = document.getElementById('flowerCanvas');
-const ctx = canvas.getContext('2d');
 
-function drawPetal(ctx, x, y, radius, startAngle, endAngle, color) {
-    ctx.beginPath();
-    ctx.fillStyle = color;
-    // Organic petal shape using a Bezier curve
-    ctx.moveTo(x, y);
-    ctx.quadraticCurveTo(x + radius, y - radius, x + radius * 2, y);
-    ctx.quadraticCurveTo(x + radius, y + radius, x, y);
-    ctx.fill();
-    ctx.closePath();
-}
+#petal-canvas{
 
-function drawFlower(x, y, petalCount, color) {
-    ctx.save();
-    ctx.translate(x, y);
-    for (let i = 0; i < petalCount; i++) {
-        ctx.rotate((Math.PI * 2) / petalCount);
-        drawPetal(ctx, 0, 0, 50, 0, Math.PI, color);
-    }
-    // Add center
-    ctx.beginPath();
-    ctx.arc(0, 0, 20, 0, Math.PI * 2);
-    ctx.fillStyle = "yellow";
-    ctx.fill();
-    ctx.restore();
-}
+  position:fixed;
 
-// Draw a sample flower
-drawFlower(250, 250, 8, "#FF69B4"); 
-</script>
+  inset:0;
+
+  width:100%;height:100%;
+
+  pointer-events:none;
+
+  z-index:40;
+
+} 
 
 /* ==========================================================================
    ENTRANCE / TEMPLE DOORS
